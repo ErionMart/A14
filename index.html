@@ -1,0 +1,68 @@
+<!doctype html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="shortcut icon" href="favicon.png" />
+<title>How to set cookies with JavaScript Demo</title>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<link rel="stylesheet" type="text/css" href="style.css" />
+</head>
+<body>
+<div id="container">
+    <div class="message change-message--on-load hide--second">
+      <p>This message is displayed only the first time you visit this page. Refresh your page to hide it!</p>
+      <p>This is shown only after the previous message was shown in the last visit. </p>
+    </div>
+
+    <div class="message change-message--on-click hide--second">
+      <p>You can only hide this message, by clicking the &ldquo;&times;&rdquo; on the right of this box <a href="#" class="close" title="Hide This Message">&times;</a></p>
+      <p>This is</p>
+    </div>
+</div><!--end div_container-->
+
+<footer>
+    <div class="reset">To reset, <a href="">remove the cookies</a>.</div>
+    <p>&copy; 4/13/2022 Erion Martinaj</p>
+
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);
+    
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<script type="text/JavaScript">
+    $(document).ready(function() {
+      
+      if ($.cookie('hide-after-load') == 'yes') {
+        $('.change-message--on-load').removeClass('hide--second');
+        $('.change-message--on-load').addClass('hide--first');
+      }
+     
+      if ($.cookie('hide-after-click') == 'yes') {
+        $('.change-message--on-click').removeClass('hide--second');
+        $('.change-message--on-click').addClass('hide--first');
+      }
+    
+      $.cookie('hide-after-load', 'yes', {expires: 7 });
+
+      $('.close').click(function() {
+    
+        if (!$('.change-message--on-click').is('hide--first')) {
+          $('.change-message--on-click').removeClass('hide--second');
+          $('.change-message--on-click').addClass('hide--first');
+          $.cookie('hide-after-click', 'yes', {expires: 7 });
+        }
+        return false;
+      })    
+      $('.reset a').click(function() {
+       
+        if (!$(this).hasClass('clicked')) {
+         
+          $(this).addClass('clicked');
+          $.cookie('hide-after-load', 'no', {expires: 7 });
+          $.cookie('hide-after-click', 'no', {expires: 7 });
+        }
+        location.reload();
+      });
+    });
+</script>
+</body>
+</html>
