@@ -1,4 +1,3 @@
-index.html
 
 <!doctype html>
 <head>
@@ -26,44 +25,39 @@ index.html
     <div class="reset">To reset, <a href="">remove the cookies</a>.</div>
     <p>&copy; 4/13/2022 Erion Martinaj</p>
 
-    <a href="#" class="twitter-share-button" data-via="alexcican" data-related="alexcican">Tweet</a>
     <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);
     
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
 <script type="text/javascript" src="cookie.js"></script>
 <script type="text/JavaScript">
     $(document).ready(function() {
-      // COOKIES
-      // if the cookie is true, hide the initial message and show the other one
+      
       if ($.cookie('hide-after-load') == 'yes') {
         $('.change-message--on-load').removeClass('hide--second');
         $('.change-message--on-load').addClass('hide--first');
       }
-      // if the cookie is true, hide the initial message and show the other one
+     
       if ($.cookie('hide-after-click') == 'yes') {
         $('.change-message--on-click').removeClass('hide--second');
         $('.change-message--on-click').addClass('hide--first');
       }
-      // add cookie to hide the first message after load (on refresh it will be hidden)
+    
       $.cookie('hide-after-load', 'yes', {expires: 7 });
-      // when clicked on “X” icon do something
+
       $('.close').click(function() {
-        // check that “X” icon was not cliked before (hidden)
+    
         if (!$('.change-message--on-click').is('hide--first')) {
           $('.change-message--on-click').removeClass('hide--second');
           $('.change-message--on-click').addClass('hide--first');
-          // add cookie setting that user has clicked
           $.cookie('hide-after-click', 'yes', {expires: 7 });
         }
         return false;
-      })
-      //reset the cookies (not shown in tutorial)
+      })    
       $('.reset a').click(function() {
-        // check that if it was cliked before or not
+       
         if (!$(this).hasClass('clicked')) {
-          // add class that the link is clicked and shot the footer with delay
+         
           $(this).addClass('clicked');
-          // add cookie setting that user has clicked
           $.cookie('hide-after-load', 'no', {expires: 7 });
           $.cookie('hide-after-click', 'no', {expires: 7 });
         }
